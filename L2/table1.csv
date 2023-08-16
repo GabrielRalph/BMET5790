@@ -1,4 +1,4 @@
- ,,,,,,1000Hz
+1000Hz, ,,,,,
  ,Sound level meter(dB),Differnece (dB),Android App (dB),Difference (dB),iPhone App (dB),Difference (dB)
  ,65.4,-,52.1,-,53,-
  ,74.8,9.4,60.8,8.7,55.9,2.9
@@ -6,7 +6,7 @@
  ,94.8,10,74.4,5.2,65,2.1
 Average (P), ,4.02, ,3.11, ,2.13
 Average (dB), ,9.80, ,7.57, ,4.28
- ,,,,,,400Hz
+400Hz, ,,,,,
  ,Sound level meter(dB),Differnece (dB),Android App (dB),Difference (dB),iPhone App (dB),Difference (dB)
  ,63.9,-,50.8,-,50.4,-
  ,73.9,10,55.9,5.1,60.9,10.5

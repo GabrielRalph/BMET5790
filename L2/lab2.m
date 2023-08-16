@@ -27,7 +27,7 @@ for i = 1:2
     Adiffpm = arrayfun(@(x) sprintf("%.2f", x), Adiffpm);
     Adiffpd = arrayfun(@(x) sprintf("%.2f", x), Adiffpd);
     
-    tble = cat(1, tble, [" ", "", "", "", "", "", data{2, i};
+    tble = cat(1, tble, [data{2, i}, " ", "", "", "", "", "";
             " ","Sound level meter(dB)", "Differnece (dB)", "Android App (dB)", "Difference (dB)", "iPhone App (dB)", "Difference (dB)";
             repmat(" ", length(A(:,1)), 1), A(:, 1), ["-";Adif(:, 1)], A(:, 2), ["-";Adif(:, 2)], A(:, 3), ["-";Adif(:, 3)];
             "Average (P)", " " ,Adiffpm(1), " ", Adiffpm(2), " ", Adiffpm(3);
