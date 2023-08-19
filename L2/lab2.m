@@ -28,24 +28,24 @@ for i = 1:2
     Adiffpd = arrayfun(@(x) sprintf("%.2f", x), Adiffpd);
     
     tble = cat(1, tble, [data{2, i}, "", "", "", "", "", "";
-            " ","Sound level meter(dB)", "Differnece (dB)", "Android App (dB)", "Difference (dB)", "iPhone App (dB)", "Difference (dB)";
+            " ","<b>Sound level meter(dB)</b>", "<b>Differnece (dB)</b>", "<b>Android App (dB)</b>", "<b>Difference (dB)</b>", "<b>iPhone App (dB)</b>", "<b>Difference (dB)</b>";
             repmat(" ", length(A(:,1)), 1), A(:, 1), ["-";Adif(:, 1)], A(:, 2), ["-";Adif(:, 2)], A(:, 3), ["-";Adif(:, 3)];
-            "Average (P)", " " ,Adiffpm(1), " ", Adiffpm(2), " ", Adiffpm(3);
-            "Average (dB)", " " ,Adiffpd(1), " ", Adiffpd(2), " ", Adiffpd(3)]);
+            
+            "<b>Average (dB)</b>", " " ,Adiffpd(1), " ", Adiffpd(2), " ", Adiffpd(3)]);
 end
 writematrix(tble,"table1.csv");
 
 %%
-
+Bl = ["<b>Player Type</b>", "<b>Music Genre</b>", "<b>Comfortable SPL (dB)</b>", "<b>Loudest SPL (dB)</b>"];
 B = ["Apple Airpods Gen 3",                                 "EDM",          85.6, 101;
      "Xiaomi in",                                           "Baby Metal",   93,   94;
      "Sennheiser cclosed back noise cancelling headphones", "Pop",          58,   60;
      "Sony closed back headphones",                         "Pop",          70,   75;
-     "Audio technica in ear buds",                          "Metal",        80,   0];
-
+     "Audio technica in ear buds",                          "Metal",        80,   "-"];
+writematrix([Bl; B], "table3.csv");
 %%
 
-Lc = ["Range(m)", "Test 1", "Test 2"];
+Lc = ["<b>Range(m)</b>", "<b>Test 1 SBL (dB)</b>", "<b>Test 2 SBL (dB)</b>"];
 C = [0.1,     115.6,  99;
      2.1,     83.1,   83.4;
      9.1,    82.1,   81.3;

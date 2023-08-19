@@ -1,15 +1,13 @@
 1000Hz,,,,,,
- ,Sound level meter(dB),Differnece (dB),Android App (dB),Difference (dB),iPhone App (dB),Difference (dB)
+ ,<b>Sound level meter(dB)</b>,<b>Differnece (dB)</b>,<b>Android App (dB)</b>,<b>Difference (dB)</b>,<b>iPhone App (dB)</b>,<b>Difference (dB)</b>
  ,65.4,-,52.1,-,53,-
  ,74.8,9.4,60.8,8.7,55.9,2.9
  ,84.8,10,69.2,8.4,62.9,7
  ,94.8,10,74.4,5.2,65,2.1
-Average (P), ,4.02, ,3.11, ,2.13
-Average (dB), ,9.80, ,7.57, ,4.28
+<b>Average (dB)</b>, ,9.80, ,7.57, ,4.28
 400Hz,,,,,,
- ,Sound level meter(dB),Differnece (dB),Android App (dB),Difference (dB),iPhone App (dB),Difference (dB)
+ ,<b>Sound level meter(dB)</b>,<b>Differnece (dB)</b>,<b>Android App (dB)</b>,<b>Difference (dB)</b>,<b>iPhone App (dB)</b>,<b>Difference (dB)</b>
  ,63.9,-,50.8,-,50.4,-
  ,73.9,10,55.9,5.1,60.9,10.5
  ,83.4,9.5,64.6,8.7,58,-2.9
-Average (P), ,4.00, ,2.94, ,2.64
-Average (dB), ,9.75, ,7.09, ,6.16
+<b>Average (dB)</b>, ,9.75, ,7.09, ,6.16
