@@ -11,7 +11,7 @@ data = {[
     63.9, 50.8,50.4;
     73.9, 55.9, 60.9;
     83.4, 64.6, 58;
-]; "1000Hz", "400Hz"};
+]; "<b>1000Hz</b>", "<b>400Hz</b>"};
 
 for i = 1:2
     A = data{1, i};
@@ -27,8 +27,11 @@ for i = 1:2
     Adiffpm = arrayfun(@(x) sprintf("%.2f", x), Adiffpm);
     Adiffpd = arrayfun(@(x) sprintf("%.2f", x), Adiffpd);
     
-    tble = cat(1, tble, [data{2, i}, "", "", "", "", "", "";
-            " ","<b>Sound level meter(dB)</b>", "<b>Differnece (dB)</b>", "<b>Android App (dB)</b>", "<b>Difference (dB)</b>", "<b>iPhone App (dB)</b>", "<b>Difference (dB)</b>";
+    head = [data{2, i}, "", "", "", "", "", ""];
+    if i == 1
+        head = [head; " ","<b>Sound level meter(dB)</b>", "<b>Differnece (dB)</b>", "<b>Android App (dB)</b>", "<b>Difference (dB)</b>", "<b>iPhone App (dB)</b>", "<b>Difference (dB)</b>"];
+    end
+    tble = cat(1, tble, [head
             repmat(" ", length(A(:,1)), 1), A(:, 1), ["-";Adif(:, 1)], A(:, 2), ["-";Adif(:, 2)], A(:, 3), ["-";Adif(:, 3)];
             
             "<b>Average (dB)</b>", " " ,Adiffpd(1), " ", Adiffpd(2), " ", Adiffpd(3)]);

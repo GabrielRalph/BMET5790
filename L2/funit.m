@@ -20,7 +20,7 @@ function str = funit(value, qty, options)
     if (unum < 0)
         unum = unitsb(-unum);
     elseif (unum > 0) 
-        unum = unitsa(anum);
+        unum = unitsa(unum);
     else
        unum = '' ;
     end
