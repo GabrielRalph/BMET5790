@@ -48,5 +48,7 @@ title("Frequency Gain Response");
 saveas(gcf, "plot3_1", "svg");
 hi = 1:2:length(f);
 head = ["Frequency (Hz)", "$(\cfrac{V_{out}}{V_{in}})^2$"];
-tbl = [head; f(hi)', V_ratio(hi)'];
+freq = arrayfun(@(x) sprintf("%.f", x), f(hi)');
+gain = arrayfun(@(x) sprintf("%.3f", x), V_ratio(hi)');
+tbl = [head; freq, gain];
 writematrix(tbl, "table3_1.csv");
