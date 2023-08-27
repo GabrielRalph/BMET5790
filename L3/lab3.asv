@@ -50,8 +50,8 @@ title("Frequency Gain Response");
 
 saveas(gcf, "plot3_1", "svg");
 hi = 1:2:length(f);
-head = ["Frequency (Hz)", "$(\cfrac{V_{out}}{V_{in}})^2$"];
-freq = arrayfun(@(x) sprintf("%.f", x), f(hi)');
+head = ["Frequency (kHz)", "$(\cfrac{V_{out}}{V_{in}})^2$"];
+freq = arrayfun(@(x) sprintf("%.f", x), (f(hi)/1000)');
 gain = arrayfun(@(x) sprintf("%.3f", x), V_ratio(hi)');
 tbl = [head; freq, gain];
 writematrix(tbl, "table3_1.csv");
@@ -59,6 +59,7 @@ writematrix(tbl, "table3_1.csv");
 po = 20e-6;
 
 spl = 60 - 20 * log10(50/30);
+
 Zair = 1.23 * 340;
 prms = po * 10 ^(spl/20);
 Pm = sqrt(2) * prms;
@@ -75,5 +76,16 @@ uprint(Vout1, "V");
 Vout2 = Vout1 * sqrt(V_ratio(1));
 uprint(Vout2, "V");
 
-Vout2_rms = Vout2 /s
-uprint()
+Vout2_rms = Vout2 /sqrt(2);
+uprint(Vout2_rms, "V");
+
+s = [-70, -76];
+s2 = 10.^(s/20);
+10^(-73/20)
+mean(s2)
+% spl2 = 20 * log10(101.325e3/20);
+% prms2 = po * 10 ^(spl2/20);
+% Pm2 = sqrt(2) * prms2;
+% vmax2 = Pm2 / Zair;% m/s
+% Vout12 = beta * lwire * vmax2;
+% uprint(Vout12, "V");

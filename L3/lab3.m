@@ -59,6 +59,7 @@ writematrix(tbl, "table3_1.csv");
 po = 20e-6;
 
 spl = 60 - 20 * log10(50/30);
+
 Zair = 1.23 * 340;
 prms = po * 10 ^(spl/20);
 Pm = sqrt(2) * prms;
@@ -77,3 +78,16 @@ uprint(Vout2, "V");
 
 Vout2_rms = Vout2 /sqrt(2);
 uprint(Vout2_rms, "V");
+
+s = [-70, -76];
+s2 = 10.^(s/20);
+10^(-73/20)
+mean(s2)
+% spl2 = 20 * log10(101.325e3/20);
+% prms2 = po * 10 ^(spl2/20);
+% Pm2 = sqrt(2) * prms2;
+% vmax2 = Pm2 / Zair;% m/s
+% Vout12 = beta * lwire * vmax2;
+% uprint(Vout12, "V");
+
+%%
