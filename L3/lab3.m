@@ -52,7 +52,7 @@ xlabel("Frequency kHz");
 ylabel("(V_{out} / V_{in})^2");
 title("Frequency Gain Response");
 
-saveas(gcf, "plot3_1", "svg");
+saveas(gcf, "plot3_1", "jpg");
 %% make table
 hi = 1:2:length(f);
 head = ["Frequency (kHz)", "$(\cfrac{V_{out}}{V_{in}})^2$"];
