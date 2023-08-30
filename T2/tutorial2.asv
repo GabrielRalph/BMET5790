@@ -1,3 +1,6 @@
+clc;
+clear;
+
 [z]=imread('face2','bmp');
 zf=double(z);		% convert the image data to floating point
 
@@ -48,31 +51,33 @@ colorbar()
 title("Default Image")
 
 %%
-t = linspace(0,0.5,4000);
-signals = zeros([8, length(t)]);
-for i=1:8
-    signals(i,:) = sin(2*pi*i*10*t);
+Fs = 8000;        % frequncy of signals
+n = size(zf4, 2); % number of signals
+L = 4000;         % points in signals
+
+t = linspace(0,L/Fs,L)';
+waves = sin(2*pi*10*t*(1:n));
+
+% Multiple columns of image with the wave signals
+weighted_cols = waves * zf4; % much simpler then 3 nested loops
+% Normalise 
+weighted_cols = weighted_cols ./ max(abs(weighted_cols));
+
+% plot signals
+for i = 1:n
+    subplot(n, 1, i);
+    plot(t, weighted_cols(:, i));
+    if i == 4; ylabel("Normalised Amplitude"); end;
+    title(sprintf("Normalised Sound Column %d", i));
 end
+xlabel("Time (s)");
 
-summed_signal = zeros(1,length(t));
-norm_list = zeros(8,length(t));
 
-for k=1:8
-    for i=1:length(t)
-        value = 0;
-        for j=1:8
-            dp = signals(j,i);
-            weighted_dp = dp*zf4(j,k);
-            value = value + weighted_dp;
-        end
-        summed_signal(i) = value;
-    end
-    norm_signal = summed_signal/abs(max(summed_signal));
-    norm_list(k,:) = norm_signal;
-    figure(k)
-    plot(t, norm_signal)
-    xlabel("Time (s)")
-    ylabel("Amplitude")
-    title()
-end
+%%
+f = Fs*(0:ceil(L/2 - 1))/L;
+y = fft(weighted_cols, [], 1);
 
+y1 = abs(y(1:ceil(L/2), :));
+y1 = 4 * y1 ./ max(y1);
+% 
+semilogx(f, y1(:, 4))
