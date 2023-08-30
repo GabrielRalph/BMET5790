@@ -103,19 +103,20 @@ clf;
 f1 = 293.66;
 f_ratios = [0 4 7 12 16 19 24 28] / 12;
 
-fl = f1 .^ f_ratios;
+fl = f1 * 2 .^ f_ratios;
 
 waves = sin(2*pi*t*fl);
 
 % Multiple columns of image with the wave signals
-weighted_cols = waves * zf4; % much simpler then 3 nested loops
+weighted_cols = waves * zf4;
 weighted_cols = weighted_cols ./ max(abs(weighted_cols));
 
-stereo_weights = [1:4, 4:7]
+stereo_weights = [1:4, 4:7];
 left = reshape(weighted_cols .* stereo_weights, [], 1);
 right = reshape(weighted_cols .* flip(stereo_weights), [], 1);
 V_norm = sqrt(max(left)^2 + max(right)^2);
-stereo = [left, right] / V_norm;
-plot(stereo);
+stereo = [left, right] ./ [max(left), max(right)];
+
+sound(stereo, Fs);
 
 
