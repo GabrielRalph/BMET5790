@@ -54,13 +54,13 @@ title("Default Image")
 Fs = 8000;        % frequncy of signals
 n = size(zf4, 2); % number of signals
 L = 4000;         % points in signals
+fl = 10*(1:n);    % frequency levels
 
 t = linspace(0,L/Fs,L)';
-waves = sin(2*pi*10*t*(1:n));
+waves = sin(2*pi*t*fl);
 
 % Multiple columns of image with the wave signals
 weighted_cols = waves * zf4; % much simpler then 3 nested loops
-% Normalise 
 weighted_cols = weighted_cols ./ max(abs(weighted_cols));
 
 % plot signals
@@ -74,15 +74,48 @@ xlabel("Time (s)");
 
 
 %%
+
 % Fast furiour transform
 f = Fs*(0:ceil(L/2 - 1))/L;
 y = fft(weighted_cols, [], 1);
 
-% Select first half and normalise to 4
+% Select first half and normalise to max value in image column
 y1 = abs(y(1:ceil(L/2), :));
-y1 = 4 * y1 ./ max(y1);
+y1 = max(zf4) .* y1 ./ max(y1);
 
 col_to_check = 4;
-% Plot frquency amplitudes for frequencies up 100Hz
-plot(f(f<100), y1(f<100, 4));
+ex_a = zf4(:, col_to_check); % expected amplitudes 
+
+% Plot frquency response for frequencies up 100Hz
+clf;
+plot(f(f<100), y1(f<100, col_to_check));
+hold on;
+% Plot expected frequency responses
+scatter(fl, ex_a); 
+ylim([0, 4.5]);
+ylabel("Amplitude");
+xlabel("Frequency (Hz)");
+title(sprintf("Frequency response of Column %d Signal", col_to_check))
+legend(["FFT results", "Expected peaks"]);
+
+%%
+clf;
+f1 = 293.66;
+f_ratios = [0 4 7 12 16 19 24 28] / 12;
+
+fl = f1 .^ f_ratios;
+
+waves = sin(2*pi*t*fl);
+
+% Multiple columns of image with the wave signals
+weighted_cols = waves * zf4; % much simpler then 3 nested loops
+weighted_cols = weighted_cols ./ max(abs(weighted_cols));
+
+stereo_weights = [1:4, 4:7]
+left = reshape(weighted_cols .* stereo_weights, [], 1);
+right = reshape(weighted_cols .* flip(stereo_weights), [], 1);
+V_norm = sqrt(max(left)^2 + max(right)^2);
+stereo = [left, right] / V_norm;
+plot(stereo);
+
 
