@@ -115,7 +115,7 @@ stereo_weights = [1:4, 4:7];
 left = reshape(weighted_cols .* stereo_weights, [], 1);
 right = reshape(weighted_cols .* flip(stereo_weights), [], 1);
 V_norm = sqrt(max(left)^2 + max(right)^2);
-stereo = [left, right] ./ [max(left), max(right)];
+stereo = [right, left] ./ [max(left), max(right)];
 
 sound(stereo, Fs);
 

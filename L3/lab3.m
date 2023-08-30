@@ -1,6 +1,7 @@
 addpath("../");
 clc; 
 
+% Inductance
 mu_r = 1.05;
 mu_o = 4e-7 * pi;
 N = 550;
@@ -11,22 +12,25 @@ L = mu_r * mu_o * N^2 * Acoil / Lcoil;
 
 uprint(L, "H");
 
+% Ristance
 rho_cu = 1.72e-8;
 lwire = 550*pi*13e-3;
 Acu = pi * (0.0281e-3/2)^2;
 
 R = rho_cu * lwire / Acu;
 
+addpath('../')
 uprint(R, "ohm");
 
+% Complex impedance
 omega = 1000 * 2 * pi;
-
 z = R + 1i * omega * L;
 Z = abs(z);
 theta = atan(imag(z) / real(z));
 theta_deg = theta * 180 / pi;
 fprintf("%s /_ %s\n", funit(Z,"ohm"), funit(theta_deg, "deg"));
 
+% Impedance
 clf
 Rload = 600;
 f = (0:1:20) * 1000;
@@ -49,13 +53,16 @@ ylabel("(V_{out} / V_{in})^2");
 title("Frequency Gain Response");
 
 saveas(gcf, "plot3_1", "svg");
+%% make table
 hi = 1:2:length(f);
 head = ["Frequency (kHz)", "$(\cfrac{V_{out}}{V_{in}})^2$"];
 freq = arrayfun(@(x) sprintf("%.f", x), (f(hi)/1000)');
 gain = arrayfun(@(x) sprintf("%.3f", x), V_ratio(hi)');
 tbl = [head; freq, gain];
-writematrix(tbl, "table3_1.csv");
+textable = mat2textable(tbl);
+disp(textable);
 
+%%
 po = 20e-6;
 
 spl = 60 - 20 * log10(50/30);
@@ -79,6 +86,7 @@ uprint(Vout2, "V");
 Vout2_rms = Vout2 /sqrt(2);
 uprint(Vout2_rms, "V");
 
+%%
 s = [-70, -76];
 s2 = 10.^(s/20);
 10^(-73/20)
