@@ -48,7 +48,7 @@ xlabel("Frequency kHz");
 ylabel("(V_{out} / V_{in})^2");
 title("Frequency Gain Response");
 
-saveas(gcf, "plot3_1", "svg");
+saveas(gcf, "plot3_1", "jpg");
 hi = 1:2:length(f);
 head = ["Frequency (kHz)", "$(\cfrac{V_{out}}{V_{in}})^2$"];
 freq = arrayfun(@(x) sprintf("%.f", x), (f(hi)/1000)');
@@ -83,6 +83,7 @@ s = [-70, -76];
 s2 = 10.^(s/20);
 10^(-73/20)
 mean(s2)
+316.23*0.012/101325
 % spl2 = 20 * log10(101.325e3/20);
 % prms2 = po * 10 ^(spl2/20);
 % Pm2 = sqrt(2) * prms2;
