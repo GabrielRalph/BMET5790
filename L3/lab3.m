@@ -1,11 +1,11 @@
 addpath("../");
-clc; 
+clc;
 
 % Inductance
 mu_r = 1.05;
 mu_o = 4e-7 * pi;
 N = 550;
-Acoil = pi * (13e-3/2)^2; 
+Acoil = pi * (13e-3/2)^2;
 Lcoil = 5e-3; %mm
 
 L = mu_r * mu_o * N^2 * Acoil / Lcoil;
@@ -53,7 +53,6 @@ ylabel("(V_{out} / V_{in})^2");
 title("Frequency Gain Response");
 
 saveas(gcf, "plot3_1", "jpg");
-%% make table
 hi = 1:2:length(f);
 head = ["Frequency (kHz)", "$(\cfrac{V_{out}}{V_{in}})^2$"];
 freq = arrayfun(@(x) sprintf("%.f", x), (f(hi)/1000)');
@@ -91,6 +90,7 @@ s = [-70, -76];
 s2 = 10.^(s/20);
 10^(-73/20)
 mean(s2)
+316.23*0.012/101325
 % spl2 = 20 * log10(101.325e3/20);
 % prms2 = po * 10 ^(spl2/20);
 % Pm2 = sqrt(2) * prms2;
