@@ -9,6 +9,7 @@ C3 = 12e-12;
 
 Z1 = @(f) 1./(1i * C1 * (2 * pi * f)) + R4;
 Z2 = @(f) 1./(1i * C3 * (2 * pi * f) + 1/R5);
+Z3 = @(f) 1./(1/R5);
 G = @(f) Z2(f)./Z1(f);
 
 clc;
@@ -22,7 +23,7 @@ fprintf("Q1.b:\t The gain at a frequency of 500Hz is predicted to be %.0f\n", G_
 %%
 c1 = 4.7e-6;
 Z1 = @(f, c1) 1./(1i * c1 * (2 * pi * f)) + R4;
-Z2 = @(f, c3) 1./(1i * c3 * (2 * pi * f) + 1/R5);
+Z2 = @(f, c3) 1./(1/R5);
 G = @(f, c1, c3) Z2(f, c3)./Z1(f, c1);
 
 G_1 = abs(G(f, C1, [12e-12; 12e-13; 12e-14]));
