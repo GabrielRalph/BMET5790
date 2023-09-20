@@ -1,0 +1,135 @@
+clear;clc;clf;
+
+filename = "Evoked_eyes_open_closed.txt";
+pdeg = 3;
+
+fsscale = 1.6;
+
+T1 = readtable(filename);
+t = T1{:, 1};
+v = T1{:, 2};
+
+% plot raw data
+% subplot(4, 1, 1);
+plot(t, v);
+title("Raw Data");
+xlabel("Time (s)");
+ylabel("EEG (mV)");
+fontsize(gcf, scale=fsscale);
+saveas(gcf, "plot_1_1", "png");
+
+% fit polynomial
+pcoefs = polyfit(t, v, pdeg);
+v_adj = v - polyval(pcoefs, t);
+% plot poly adjusted
+% subplot(4, 1, 2);
+plot(t, v_adj);
+title("Ploynomial Fitted");
+xlabel("Time (s)");
+ylabel("EEG (mV)");
+fontsize(gcf, scale=fsscale);
+saveas(gcf, "plot_1_2", "png");
+
+% compute sample rate
+dt = t(end) - t(1);
+n = length(t);
+fs = round(n/dt);
+
+% construct 3rd order high pass butter filter
+fc = 2;
+[b,a] = butter(3,fc/(fs/2), "high");
+v_filt = filter(b, a, v_adj);
+% plot filtered signal
+% subplot(4, 1, 3);
+plot(t, v_filt);
+title("Filtered Poly Fitted");
+xlabel("Time (s)");
+ylabel("EEG (mV)");
+fontsize(gcf, scale=fsscale);
+saveas(gcf, "plot_1_3", "png");
+
+
+% create fft spectrum frequency response
+fres = abs(fft(v_filt)/n);
+fres = fres(1:round(1 + n/2));
+fres(2:end-1) = 2 * fres(2:end-1);
+fxs = (fs/n * (0:round(n/2)));
+% Plot FFT Frequency response
+
+subi = fxs < 49;
+[pks, locs] = findpeaks(fres(subi), fxs(subi), "MinPeakDistance", 5);
+[pks, si] = sort(pks, "descend");
+pks = pks(1:3);
+locs = locs(si(1:3));
+[~, wi] = sort(locs, 'ascend');
+
+% subplot(4, 1, 4);
+plot(fxs(fxs < 100), fres(fxs < 100));
+title("FFT 1S Frequency Response");
+xlabel("Frequency (Hz)");
+ylabel("Response Gain");
+hold on;
+for i = 1:3
+    scatter(locs(i), pks(i), 'filled');
+end
+% Usually rages theta: 4-7Hz, alpha: 8-12Hz beta: 13-30Hz, 
+lgd = ["Theta \theta = ", "Alpha \alpha = ", "Beta \beta = "];
+legend(["", (lgd(wi) + round(locs, 1) + "Hz")]);
+fontsize(gcf, scale=fsscale);
+saveas(gcf, "plot_1_4", "png");
+
+clc;clf;
+spectrogram(v_filt,hamming(256),220,512,fs, "MinThreshold", -75);
+xlim([0, 100]);
+colormap(turbo);
+fontsize(gcf, scale=fsscale);
+title("Frequency Response of Filtered EEG")
+saveas(gcf, "plot_1_5", "png");
+%%
+% T4 = readtable("Evoked_visual_left.txt");
+T2_3 = {readtable("Evoked_audatory_left.txt"), readtable("Evoked_audatory_right.txt"); "Left", "Right"};
+
+
+clf; clc;
+for i = 1:2
+    T = T2_3{1, i};
+
+    t = T{:, 1};
+    eeg = T{:, 2};
+    trig = T{:, 3};
+
+    n = length(t);
+    fs = round(n / (t(end) - t(1)));
+
+    [pks, locs] = findpeaks(trig, t, "MinPeakHeight", 6);
+
+    avgpi = mean(locs(2:end) -  locs(1:(end-1)));
+    peak_t0 = round(locs(1) * fs);
+    peak_intv = round(avgpi * fs);
+    peak_n = length(pks);
+    
+    bavgi = blockavg(eeg(peak_t0:end), peak_intv, peak_n-1);
+    plot((0:(peak_intv-1))/fs, bavgi);
+    hold on;
+end
+title("EEG Block Average Signal");
+subtitle("Auditory Response")
+legend(T2_3(2, :))
+xlabel("Block Time (s)");
+ylabel("EEG (mV)");
+fontsize(gcf, scale=fsscale);
+saveas(gcf, "plot_3_1", "png");
+
+
+
+
+function bavg = blockavg(x, bl, bn)
+    n = length(x);
+    if ~exist("bn", "var")
+        bn = floor(n / bl);
+    end
+    
+    idx = (((0:(bn-1))*bl)') + (1:bl);
+    blocks = x(idx);
+    bavg = mean(blocks);
+end
