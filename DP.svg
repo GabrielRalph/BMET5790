@@ -1,0 +1,257 @@
+<svg id="uml-diagram" viewBox="-16.949859619140625 -40.208335876464844 1164.2708740234375 856.2499389648438" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+	<marker id="association" viewBox="-1 -1 12 12" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+	<path d="M 0 0 L 10 5 L 0 10">
+	</path>
+	</marker>
+	<marker id="inheritance" viewBox="-1 -1 12 12" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+	<path d="M 0 0 L 10 5 L 0 10 z">
+	</path>
+	</marker>
+	<marker id="aggrigation" viewBox="-1 -1 22 12" refX="20" refY="5" markerWidth="12" markerHeight="6" orient="auto-start-reverse">
+	<path d="M 0 5 L 10 0 L 20 5 L 10 10 z">
+	</path>
+	</marker>
+	<marker id="composition" viewBox="-1 -1 22 12" refX="20" refY="5" markerWidth="12" markerHeight="6" orient="auto-start-reverse">
+	<path d="M 0 5 L 10 0 L 20 5 L 10 10 z">
+	</path>
+	</marker>
+	</defs>
+	<style>
+	#uml-diagram {
+	stroke-width: 2;
+	}
+	.v-box text {
+	user-select: none;
+	-webkit-touch-callout:none;
+	-ms-user-select:none;
+	-moz-user-select:none;
+	font-family: monospace;
+	}
+	.v-box rect{
+	fill: white;
+	stroke: black;
+	}
+	#association, #inheritance, #aggrigation, #composition{
+	stroke: black;
+	fill: none;
+	stroke-dasharray: 5 0;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	}
+	#composition {
+	fill: black;
+	stroke-dasharray: 5 0;
+	}
+	#inheritance, #aggrigation{
+	stroke-dasharray: 5 0;
+	fill: white;
+	}
+	.inheritance .edge-path, .realisation .edge-path{
+	--marker: url("#inheritance");
+	}
+	.aggrigation .edge-path{
+	--marker: url("#aggrigation");
+	}
+	.composition .edge-path{
+	--marker: url("#composition");
+	}
+	.realisation .edge-path, .dependancy .edge-path {
+	stroke-dasharray: 5 5;
+	}
+	.edge-path {
+	--marker: url("#association");
+	}
+	.edge-path.start-marker {
+	marker-start: var(--marker);
+	}
+	.edge-path.end-marker {
+	marker-end: var(--marker);
+	}
+	.v-edge {
+	stroke: black;
+	fill: none;
+	}
+	</style>
+	<g class="v-boxes">
+		<g class="v-box" box-id="BOX0" transform="translate(941.66667,611.25)" pos="941.66667,611.25" height="89.58" radius="30" width="247.23">
+			<rect width="247.23306274414062" height="89.58333206176758" rx="30" x="-123.61653137207031" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-93.61653137207031, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">X-Axis Motor</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX1" transform="translate(936.66667,495.41667)" pos="936.66667,495.41667" height="89.58" radius="30" width="247.23">
+			<rect width="247.23306274414062" height="89.58333206176758" rx="30" x="-123.61653137207031" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-93.61653137207031, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">Y-Axis Motor</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX2" transform="translate(942.5,721.25)" pos="942.5,721.25" height="89.58" radius="30" width="309.64">
+			<rect width="309.6419219970703" height="89.58333206176758" rx="30" x="-154.82096099853516" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-124.82096099853516, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">Rotational Motor</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX3" transform="translate(935,382.91667)" pos="935,382.91667" height="89.58" radius="30" width="247.23">
+			<rect width="247.23306274414062" height="89.58333206176758" rx="30" x="-123.61653137207031" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-93.61653137207031, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">Linear Motor</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX4" transform="translate(566.66667,525.41667)" pos="566.66667,525.41667" height="89.58" radius="30" width="262.84">
+			<rect width="262.8385314941406" height="89.58333206176758" rx="30" x="-131.4192657470703" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-101.41926574707031, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">Driver Module</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX5" transform="translate(105.83333,283.75)" pos="105.83333,283.75" height="89.58" radius="30" width="138.01">
+			<rect width="138.01432037353516" height="89.58333206176758" rx="30" x="-69.00716018676758" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-39.00716018676758, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">LIDAR</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX6" transform="translate(117.5,172.08333)" pos="117.5,172.08333" height="89.58" radius="30" width="153.62">
+			<rect width="153.61978912353516" height="89.58333206176758" rx="30" x="-76.80989456176758" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-46.80989456176758, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">Camera</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX7" transform="translate(156.66667,54.58333)" pos="156.66667,54.58333" height="89.58" radius="30" width="247.23">
+			<rect width="247.23306274414062" height="89.58333206176758" rx="30" x="-123.61653137207031" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-93.61653137207031, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">Torque Force</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX8" transform="translate(126.66667,396.25)" pos="126.66667,396.25" height="89.58" radius="30" width="184.82">
+			<rect width="184.82421875" height="89.58333206176758" rx="30" x="-92.412109375" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-62.412109375, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">Encoders</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX9" transform="translate(566.66667,229.58333)" pos="566.66667,229.58333" height="89.58" radius="30" width="278.44">
+			<rect width="278.4375" height="89.58333206176758" rx="30" x="-139.21875" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-109.21875, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">Data Aquisitor</text>
+			</g>
+		</g>
+		<g class="v-box" box-id="BOX10" transform="translate(566.66667,378.75)" pos="566.66667,378.75" height="89.58" radius="30" width="262.84">
+			<rect width="262.8385314941406" height="89.58333206176758" rx="30" x="-131.4192657470703" y="-44.79166603088379">
+			</rect>
+			<g transform="translate(-101.41926574707031, 8.541666030883789)">
+				<text text-anchor="start" y="0em" style="font-size: 2em;">CL Controller</text>
+			</g>
+		</g>
+	</g>
+	<g class="v-edges">
+		<g class="v-edge" box-a="BOX4" box-b="BOX1">
+			<path class="edge-path end-marker" d="M698.08593,525.41667L705.08593,525.41667C744.6906,525.41667,766.44547,495.41667,806.05014,495.41667L813.05014,495.41667">
+			</path>
+			<path class="control" d="M698.08593,525.41667L698.08593,525.41667">
+			</path>
+			<path class="control" d="M813.05014,495.41667L813.05014,495.41667">
+			</path>
+			<path class="control" d="M755.56799,510.41669L755.56799,510.41669">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX4" box-b="BOX0">
+			<path class="edge-path end-marker" d="M694.06669,555.20833L700.12887,558.70833C738.89033,581.08727,790.23858,538.64678,821.88718,570.29538L826.83693,575.24513">
+			</path>
+			<path class="control" d="M694.06669,555.20833L694.06669,555.20833">
+			</path>
+			<path class="control" d="M826.83693,575.24513L826.83693,575.24513">
+			</path>
+			<path class="control" d="M761.99677,561.32806L761.99677,561.32806">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX4" box-b="BOX2">
+			<path class="edge-path end-marker" d="M683.08593,566.18909L686.58593,572.25127C713.98694,619.7112,752.76522,641.54451,791.51609,680.29538L796.46584,685.24513">
+			</path>
+			<path class="control" d="M683.08593,566.18909L683.08593,566.18909">
+			</path>
+			<path class="control" d="M796.46584,685.24513L796.46584,685.24513">
+			</path>
+			<path class="control" d="M735.14063,629.85034L735.14063,629.85034">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX4" box-b="BOX3">
+			<path class="edge-path end-marker" d="M689.29914,489.4118L694.24888,484.46205C729.28547,449.42546,780.18393,458.90788,815.22052,423.87128L820.17027,418.92154">
+			</path>
+			<path class="control" d="M689.29914,489.4118L689.29914,489.4118">
+			</path>
+			<path class="control" d="M820.17027,418.92154L820.17027,418.92154">
+			</path>
+			<path class="control" d="M754.73474,454.16666L754.73474,454.16666">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX7" box-b="BOX9">
+			<path class="edge-path end-marker" d="M271.4964,90.5882L276.44615,95.53795C322.23898,141.33078,385.49213,142.83588,431.28497,188.62872L436.23471,193.57846">
+			</path>
+			<path class="control" d="M271.4964,90.5882L271.4964,90.5882">
+			</path>
+			<path class="control" d="M436.23471,193.57846L436.23471,193.57846">
+			</path>
+			<path class="control" d="M353.86557,142.08334L353.86557,142.08334">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX6" box-b="BOX9">
+			<path class="edge-path end-marker" d="M194.30989,172.08333L201.30989,172.08333C280.97369,172.08333,340.78412,224.65278,420.44792,224.65278L427.44792,224.65278">
+			</path>
+			<path class="control" d="M194.30989,172.08333L194.30989,172.08333">
+			</path>
+			<path class="control" d="M427.44792,224.65278L427.44792,224.65278">
+			</path>
+			<path class="control" d="M310.87888,198.36804L310.87888,198.36804">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX5" box-b="BOX9">
+			<path class="edge-path end-marker" d="M174.84049,283.75L181.84049,283.75C267.62751,283.75,334.6609,234.51389,420.44792,234.51389L427.44792,234.51389">
+			</path>
+			<path class="control" d="M174.84049,283.75L174.84049,283.75">
+			</path>
+			<path class="control" d="M427.44792,234.51389L427.44792,234.51389">
+			</path>
+			<path class="control" d="M301.1442,259.13196L301.1442,259.13196">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX8" box-b="BOX9">
+			<path class="edge-path end-marker" d="M210.29198,360.24513L215.24173,355.29538C272.98159,297.55552,373.5451,328.27781,431.28497,270.53795L436.23471,265.5882">
+			</path>
+			<path class="control" d="M210.29198,360.24513L210.29198,360.24513">
+			</path>
+			<path class="control" d="M436.23471,265.5882L436.23471,265.5882">
+			</path>
+			<path class="control" d="M323.26337,312.91669L323.26337,312.91669">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX9" box-b="BOX10">
+			<path class="edge-path end-marker" d="M566.66667,274.375L566.66667,281.375C566.66667,301.23611,566.66667,307.09722,566.66667,326.95833L566.66667,333.95833">
+			</path>
+			<path class="control" d="M566.66667,274.375L566.66667,274.375">
+			</path>
+			<path class="control" d="M566.66667,333.95833L566.66667,333.95833">
+			</path>
+			<path class="control" d="M566.66669,304.16669L566.66669,304.16669">
+			</path>
+		</g>
+		<g class="v-edge" box-a="BOX10" box-b="BOX4">
+			<path class="edge-path end-marker" d="M566.66667,423.54167L566.66667,430.54167C566.66667,449.56944,566.66667,454.59722,566.66667,473.625L566.66667,480.625">
+			</path>
+			<path class="control" d="M566.66667,423.54167L566.66667,423.54167">
+			</path>
+			<path class="control" d="M566.66667,480.625L566.66667,480.625">
+			</path>
+			<path class="control" d="M566.66669,452.08331L566.66669,452.08331">
+			</path>
+		</g>
+	</g>
+</svg>

@@ -24,7 +24,7 @@ title("Scaled Sphygmomanometer Data")
 
 %%
 Fs = 1/0.002;
-t0 = 15;
+t0 = 17;
 tf = 37;
 ti = t0*Fs:tf*Fs;
 plot(t(ti),P(ti))
@@ -52,12 +52,18 @@ xlabel("Time (s)")
 ylabel("Pressure (mmHg)")
 title("Low and High Pass Filtered Sphygmomanometer Data (15-37s)")
 
-[x,y] = ginput(21);
-[x1,y1] = ginput(20);
+% [x,y] = ginput(21);
+% [x1,y1] = ginput(20);
+
+[yp, xp] = findpeaks(P_filt1(ti), t(ti));
+[yt, xt] = findpeaks(-1*P_filt1(ti), t(ti));
+yt = yt * -1;
+
+
 
 %%
-y_peak = spline(x,y,t(ti));
-y_trough = spline(x1,y1,t(ti));
+y_peak = spline(xp,yp,t(ti));
+y_trough = spline(xt,yt,t(ti));
 
 plot(t(ti),P_filt1(ti))
 hold on
@@ -66,3 +72,4 @@ plot(t(ti), y_trough)
 xlabel("Time (s)")
 ylabel("Pressure (mmHg)")
 title("Low and High Pass Filtered Sphygmomanometer Data (15-37s)")
+
