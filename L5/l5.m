@@ -17,7 +17,7 @@ title("Raw Data");
 xlabel("Time (s)");
 ylabel("EEG (mV)");
 fontsize(gcf, scale=fsscale);
-saveas(gcf, "plot_1_1", "png");
+% saveas(gcf, "plot_1_1", "png");
 
 % fit polynomial
 pcoefs = polyfit(t, v, pdeg);
@@ -29,7 +29,7 @@ title("Ploynomial Fitted");
 xlabel("Time (s)");
 ylabel("EEG (mV)");
 fontsize(gcf, scale=fsscale);
-saveas(gcf, "plot_1_2", "png");
+% saveas(gcf, "plot_1_2", "png");
 
 % compute sample rate
 dt = t(end) - t(1);
@@ -47,7 +47,7 @@ title("Filtered Poly Fitted");
 xlabel("Time (s)");
 ylabel("EEG (mV)");
 fontsize(gcf, scale=fsscale);
-saveas(gcf, "plot_1_3", "png");
+% saveas(gcf, "plot_1_3", "png");
 
 
 % create fft spectrum frequency response
@@ -77,7 +77,7 @@ end
 lgd = ["Theta \theta = ", "Alpha \alpha = ", "Beta \beta = "];
 legend(["", (lgd(wi) + round(locs, 1) + "Hz")]);
 fontsize(gcf, scale=fsscale);
-saveas(gcf, "plot_1_4", "png");
+% saveas(gcf, "plot_1_4", "png");
 
 clc;clf;
 spectrogram(v_filt,hamming(256),220,512,fs, "MinThreshold", -75);
@@ -85,7 +85,7 @@ xlim([0, 100]);
 colormap(turbo);
 fontsize(gcf, scale=fsscale);
 title("Frequency Response of Filtered EEG")
-saveas(gcf, "plot_1_5", "png");
+% saveas(gcf, "plot_1_5", "png");
 %%
 % T4 = readtable("Evoked_visual_left.txt");
 T2_3 = {readtable("Evoked_audatory_left.txt"), readtable("Evoked_audatory_right.txt"); "Left", "Right"};
@@ -119,7 +119,7 @@ legend(T2_3(2, :))
 xlabel("Block Time (s)");
 ylabel("EEG (mV)");
 fontsize(gcf, scale=fsscale);
-saveas(gcf, "plot_3_1", "png");
+% saveas(gcf, "plot_3_1", "png");
 
 
 
