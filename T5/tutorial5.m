@@ -31,12 +31,12 @@ xlabel('Time (s)')
 ylabel("Differential Pressure (V)")
 title("Filtered Pressure")
 
-t = ginput(2);
+% t = ginput(2);
 
 %%
-start = t(1);
+% start = t(1);
 start_i = 556;
-stop = t(2);
+% stop = t(2);
 stop_i = 1509;
 
 range = start_i:stop_i;
@@ -54,7 +54,7 @@ legend('Flow', 'Volume', 'Location', 'southwest')
 hold off
 
 %%
-k = 1.4/min(V1_fil);
+k = 1.4/min(volume);
 
 plot(Time(range), k*V1_fil(range))
 grid on;
@@ -95,17 +95,19 @@ xlabel("Time (s)")
 ylabel("Differential Pressure (V)")
 title("Scaled and Filtered Normal Data")
 
-t = ginput(2);
+
+% t = ginput(2);
 
 %%
-start = t(1);
-start_i = 1202;
-stop = t(2);
+% start = t(1);
+start_i = 381;
+% stop = t(2);
 stop_i = 13501;
 
 range = start_i:stop_i;
 %%
 volume2 = cumsum(V2_scaled(range))/fs;
+
 
 plot(Time2(range), V2_scaled(range))
 hold on
