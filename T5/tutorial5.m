@@ -100,18 +100,30 @@ title("Scaled and Filtered Normal Data")
 
 %%
 % start = t(1);
-start_i = 381;
+start_i = 100;
 % stop = t(2);
 stop_i = 13501;
 
 range = start_i:stop_i;
 %%
-volume2 = cumsum(V2_scaled(range))/fs;
+volume2 = cumsum(V2_scaled(range) - min(V2_scaled))/fs;
 
 
-plot(Time2(range), V2_scaled(range))
+p = polyfit(Time2(range), volume2, 3);
+v22 = -volume2 + polyval(p, Time2(range));
+
+[y, x] = findpeaks(v22, Time2(range), "MinPeakHeight",0);
+%
+% p = polyfit(x, y, 5);
+% p2 = polyval(p, Time2(range));
+% 
+% v22 = v22- p2;
+% v22 = v22 - mean(v22);
+% scatter(x, y);
+hold on;
+plot(Time2, V2_scaled);
 hold on
-plot(Time2(range), volume2)
+plot(Time2(range), v22)
 grid on
 hold off
 xlabel("Time (s)")
@@ -119,3 +131,59 @@ ylabel("Flow (L/s) and Volume (L)")
 legend("Flow", "Volume", "Location", "northwest")
 title("Flow and Volume of Normal Breathing")
 
+%%
+
+heavy = importdata("heavy.dat");
+Time3 = heavy.data(:,1);
+V3 = heavy.data(:,2);
+
+plot(Time3, V3)
+grid on
+xlabel("Time (s)")
+ylabel("Differential Pressure (V)")
+title("Normal Data")
+
+%%
+
+offset3 = mean(V3);
+
+V3_offset = V3 - offset3;
+
+fs = 1/(Time3(2)-Time3(1));
+fc = 5;
+Wn = fc/(fs/2);
+
+[b,a] = butter(3, Wn);
+
+V3_fil = filter(b,a,V3_offset);
+
+V3_scaled = k*V3_fil;
+
+plot(Time3, V3_scaled)
+grid on
+xlabel("Time (s)")
+ylabel("Differential Pressure (V)")
+title("Scaled and Filtered Normal Data")
+
+
+%%
+clf;
+V3v = cumsum(V3_scaled)/fs;
+p = polyfit(Time3, V3v, 7);
+py = polyval(p, Time3);
+V3v = V3v - py;
+% mean(V3v - py)
+plot(Time3, V3v);
+hold on;
+plot(Time3, V3_scaled);
+grid on;
+xlabel("Time (s)")
+ylabel("Differential Pressure (V)")
+title("Scaled and Filtered Normal Data and volume")
+legend(["Volume", "Flow Rate"])
+%%
+plot(V3v, V3_scaled)
+grid on;
+title("Long Volume vs Flow Rate");
+xlabel("Volume");
+ylabel("Flow Rate");
